@@ -6,9 +6,11 @@ if [ ! -f configs/templates/$1.config ] ; then
 	echo "configs/templates/$1.config not found "
 	exit 1
 fi
-
 cp -f configs/templates/$1.config .config
-
+	sed -i '/CONFIG_FIRMWARE_INCLUDE_ADBYBY/d' .config
+	sed -i '/CONFIG_FIRMWARE_INCLUDE_PDNSD/d' .config
+	echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config
+	echo "CONFIG_FIRMWARE_INCLUDE_PDNSD=y" >> .config
 ROOTDIR=`pwd`
 export ROOTDIR=$ROOTDIR
 
